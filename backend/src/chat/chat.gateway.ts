@@ -20,13 +20,16 @@ interface User {
   },
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
+
+  
   
   @WebSocketServer() server: Server;
 
   private users: User[] = [];
 
-  // ✅ When user connects
+  // When user connects
   handleConnection(client: Socket) {
+    console.log("changes in chat gateway");
     const name = client.handshake.query.name as string;
 
     this.users.push({
@@ -41,7 +44,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     });
   }
 
-  // ✅ When user disconnects
+  // When user disconnects
   handleDisconnect(client: Socket) {
     const user = this.users.find((u) => u.id === client.id);
 
