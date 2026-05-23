@@ -29,7 +29,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   // When user connects
   handleConnection(client: Socket) {
-    console.log("changes in chat gateway");
     const name = client.handshake.query.name as string;
 
     this.users.push({
